@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// ? React router imports
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+// ? styles import
+import { Box, Grid, Typography } from "@mui/material";
+import { HomeOutlined } from "@mui/icons-material";
+
+import {
+  Homepage,
+  Header,
+  Navbar,
+  CryptoDetails,
+  Cryptocurencies,
+  Exchange,
+  News,
+  Footer,
+} from "./components";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <Header />
+      <Grid container spacing={2}>
+        <Grid item xs={4} md={3}>
+          <Navbar sx={{ backgroundColor: "red" }} />
+        </Grid>
+        <Grid item xs={9}>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/exchanges" element={<Exchange />} />
+            <Route path="/cryptocurencies" element={<Cryptocurencies />} />
+            <Route path="/crypto/:coinId" element={<CryptoDetails />} />
+            <Route path="/news" element={<News />} />
+          </Routes>
+        </Grid>
+      </Grid>
+      <Footer />
+    </Box>
   );
-}
+};
 
 export default App;
